@@ -10,22 +10,21 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('citas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->string('email');
-            $table->date('fecha');
-            $table->time('hora');
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('profesionals', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->string('especialidad');
+        $table->string('telefono')->nullable();
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('citas');
+        Schema::dropIfExists('profesionals');
     }
 };
